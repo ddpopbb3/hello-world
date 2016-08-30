@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- START SNIPPET: xworkSample -->
+<struts>
+
+    <!-- Some or all of these can be flipped to true for debugging -->
+    <constant name="struts.action.extension" value="do" />
+
+    <package name="default" extends="struts-default">
+
+        <action name="productList" class="cn.tedu.mvc.web.action.ProductAction" method="productList">
+            <result name="ok">/jsp/productList.jsp</result>
+        </action>
+
+        <action name="userList" class="cn.tedu.mvc.web.action.UserAction" method="userList">
+            <result name="ok" >/jsp/userManage.jsp</result>
+            <result name="login" type="redirect">tologin.do</result>
+        </action>
+        
+        <action name="userModify" class="cn.tedu.mvc.web.action.UserModifyAction" method="get">
+            <result name="ok">/jsp/userModify.jsp</result>
+        </action>
+        
+        <action name="orderConfirm" class="cn.tedu.mvc.web.action.OrderAction" method="insert">
+            <result name="ok">/jsp/orderConfirm.jsp</result>
+            <result name="back">/jsp/shoppingCart.jsp</result>
+        </action>
+        
+        <action name="neworder" class="cn.tedu.mvc.web.action.OrderAction" method="NewOrder">
+            <result name="ok" type="redirect">orderlist.do</result>
+        </action>
+        
+        <action name="userRegister" class="cn.tedu.mvc.web.action.UserModifyAction" method="insert">
+            <result name="ok" type="redirect">userList.do</result>
+        </action>
+        
+        <action name="userUpdate" class="cn.tedu.mvc.web.action.UserModifyAction" method="modify">
+            <result name="ok" type="redirect">userList.do</result>
+        </action>
+        
+        <action name="orderlist" class="cn.tedu.mvc.web.action.OrderAction" method="getList">
+            <result name="ok">/jsp/orderList.jsp</result>
+            <result name="login" type="redirect">tologin.do</result>
+        </action>
+        <action name="orderdetail" class="cn.tedu.mvc.web.action.OrderAction" method="getDetail">
+            <result name="ok" >/jsp/orderDetail.jsp</result>
+        </action>
+        
+        <action name="tologin">
+			<result>/jsp/login.jsp</result>
+		</action>
+		
+		
+		<action name="dologin" class="cn.tedu.mvc.web.action.loginAction" method="dologin">
+			<result name="welcome" type="redirectAction">productList.do</result>
+			<result name="login" type="redirect">tologin.do</result>
+		</action>
+		
+		<action name="goods" class="cn.tedu.mvc.web.action.GoodsAction" method="getGoods">
+			<result name="ok" type="redirect">/jsp/shoppingCart.jsp</result>
+			<result name="login" type="redirect">/jsp/login.jsp</result>
+		</action>
+		<action name="noShoppingCart" class="cn.tedu.mvc.web.action.GoodsAction" method="clearGoods">
+			<result name="ok" type="redirect">productList.do</result>
+			<result name="login" type="redirect">/jsp/login.jsp</result>
+		</action>
+		<action name="deleteGoods" class="cn.tedu.mvc.web.action.GoodsAction" method="deleteGoods">
+			<result name="ok" type="redirect">/jsp/shoppingCart.jsp</result>
+		</action>
+		<action name="updateGoods" class="cn.tedu.mvc.web.action.GoodsAction" method="updateGoods">
+			<result name="ok" type="redirect">/jsp/shoppingCart.jsp</result>
+		</action>
+        
+
+    </package>
+
+
+</struts>
+
+<!-- END SNIPPET: xworkSample -->
+
